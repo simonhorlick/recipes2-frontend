@@ -47,8 +47,9 @@ export default component$(() => {
         },
       });
 
-      console.log("FETCH resolved");
-      console.log(`took ${Number(process.hrtime.bigint() - start) / 1e6}ms`);
+      console.log(
+        `FETCH resolved in ${Number(process.hrtime.bigint() - start) / 1e6}ms`
+      );
 
       return await response.json();
     }

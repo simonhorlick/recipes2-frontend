@@ -42,6 +42,7 @@ export default component$(() => {
     url.searchParams.append("query", GET_RECIPE_QUERY);
 
     console.log("FETCH", url.toString());
+    const start = process.hrtime.bigint();
 
     const response = await fetch(url, {
       signal: controller?.signal,
@@ -51,7 +52,7 @@ export default component$(() => {
       },
     });
 
-    console.log("FETCH resolved");
+    console.log(`FETCH resolved in ${Number(process.hrtime.bigint() - start) / 1e6}ms`);
     return await response.json();
   });
 
