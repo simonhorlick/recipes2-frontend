@@ -18,6 +18,7 @@ interface RecipeData {
         }>;
         instructions: Array<{
           instruction: string;
+          sideNote: boolean;
         }>;
       };
     };
@@ -141,8 +142,7 @@ export default component$(() => {
   }
 
   .instructions .side-note {
-    position: absolute;
-    right: 0;
+    float: right;
     width: 20%;
     font-size: 0.75em;
     background-color: #f8f8f8;
@@ -183,7 +183,7 @@ export default component$(() => {
                 <h2>Instructions</h2>
 
                 {recipe.instructions.map((i) => (
-                  <p>{i.instruction}</p>
+                  <p class={i.sideNote ? "side-note" : ""}>{i.instruction}</p>
                 ))}
               </div>
             </div>
