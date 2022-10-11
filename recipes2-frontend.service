@@ -1,0 +1,13 @@
+[Unit]
+Description=Server for recipes frontend 
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run -i --rm \
+  --name recipes2-frontend \
+  -p 127.0.0.1:3000:3000 \
+  recipes2-frontend
+
+[Install]
+WantedBy=multi-user.target

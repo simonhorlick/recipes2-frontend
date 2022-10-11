@@ -1,12 +1,14 @@
 @font-face {
   font-family: "Antwerp";
-  src: url("../Antwerp-Regular.woff");
+  src: local("Georgia"), url("../Antwerp-Regular.woff");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Antwerp";
   font-weight: bold;
-  src: url("../Antwerp-Bold.woff");
+  src: local("Georgia"), url("../Antwerp-Bold.woff");
+  font-display: swap;
 }
 
 * {
