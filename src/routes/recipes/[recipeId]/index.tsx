@@ -1,5 +1,10 @@
 import { DocumentHead } from "@builder.io/qwik-city";
-import { Resource, component$, useResource$ } from "@builder.io/qwik";
+import {
+  Resource,
+  component$,
+  useResource$,
+  useStylesScoped$,
+} from "@builder.io/qwik";
 
 interface RecipeData {
   data: {
@@ -52,9 +57,96 @@ export default component$(() => {
       },
     });
 
-    console.log(`FETCH resolved in ${Number(process.hrtime.bigint() - start) / 1e6}ms`);
+    console.log(
+      `FETCH resolved in ${Number(process.hrtime.bigint() - start) / 1e6}ms`
+    );
     return await response.json();
   });
+
+  useStylesScoped$(`
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header img {
+    width: 100%;
+    height: auto;
+  }
+
+  .description {
+    padding: 1em;
+    text-align: center;
+    width: 50%;
+  }
+
+  h1 {
+    padding: 0.8em;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Circular Std";
+  }
+
+  .ingredients-list h2 {
+    font-size: 1em;
+    font-weight: 300;
+  }
+
+  .ingredients-list h3 {
+    padding-top: 1em;
+    font-size: 0.8em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .ingredients-box {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f8f8;
+  }
+
+  .ingredients-list {
+    margin: 2em;
+    width: 66%;
+  }
+
+  .instructions-box {
+    display: flex;
+  }
+
+  .instructions {
+    margin: 2em;
+    max-width: 60%;
+  }
+
+  .instructions p {
+    font-size: 1em;
+    line-height: 1.6em;
+  }
+
+  .instructions .side-note {
+    position: absolute;
+    right: 0;
+    width: 20%;
+    font-size: 0.75em;
+    background-color: #f8f8f8;
+    padding: 1em;
+    margin: 1em;
+  }`);
 
   return (
     <Resource

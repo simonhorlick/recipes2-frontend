@@ -1,7 +1,10 @@
-import { component$, Resource, useResource$ } from "@builder.io/qwik";
+import {
+  component$,
+  Resource,
+  useResource$,
+  useStyles$,
+} from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
-import "./list.css";
-import "./recipe.css";
 
 interface RecipeListData {
   data: {
@@ -54,6 +57,19 @@ export default component$(() => {
       return await response.json();
     }
   );
+
+  useStyles$(`
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }`);
 
   return (
     <main>
