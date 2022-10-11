@@ -1,4 +1,4 @@
-import { DocumentHead } from "@builder.io/qwik-city";
+import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import {
   Resource,
   component$,
@@ -24,8 +24,8 @@ interface RecipeData {
   };
 }
 
-export const GET_RECIPE_QUERY = `query GetRecipe {
-  oneRecipe(query: {id: "8bfd397055d34749abcc8a944e2909db"}) {
+export const GET_RECIPE_QUERY = (id: string) => `query GetRecipe {
+  oneRecipe(query: {id: "${id}"}) {
     id
     data {
       name
@@ -37,6 +37,8 @@ export const GET_RECIPE_QUERY = `query GetRecipe {
 }`;
 
 export default component$(() => {
+  const loc = useLocation();
+
   const recipeData = useResource$<RecipeData>(async ({ track, cleanup }) => {
     const controller = new AbortController();
     cleanup(() => controller.abort());
@@ -44,7 +46,7 @@ export default component$(() => {
     const url = new URL(
       `https://cdn.builder.io/api/v1/graphql/ec31c5156fa0412aa49dd7eb67dcee5f`
     );
-    url.searchParams.append("query", GET_RECIPE_QUERY);
+    url.searchParams.append("query", GET_RECIPE_QUERY(loc.params["recipeId"]));
 
     console.log("FETCH", url.toString());
     const start = process.hrtime.bigint();
