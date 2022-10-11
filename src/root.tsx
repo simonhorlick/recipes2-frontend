@@ -15,14 +15,14 @@ export default component$(() => {
 
   @font-face {
     font-family: "Antwerp";
-    src: local("Serif"), url("/Antwerp-Regular.woff") format("woff");
+    src: local("Serif"), url("/fonts/Antwerp-Regular.woff") format("woff");
     font-display: swap;
   }
   
   @font-face {
     font-family: "Antwerp";
     font-weight: bold;
-    src: local("Serif"), url("/Antwerp-Bold.woff") format("woff");
+    src: local("Serif"), url("/fonts/Antwerp-Bold.woff") format("woff");
     font-display: swap;
   }
   
